@@ -1,0 +1,37 @@
+creator: admin
+description: 'Ask Jev to rate content along an ordered rubric you define, for example
+    how risky a login is or how urgent a ticket is. Jev returns a probability-weighted
+    score between 0 and the highest level index. The action result is the score, so
+    playbooks can compare it against a threshold.'
+dynamic_results_metadata:
+-   result_example_path: resources/ask_score_question_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Jev
+name: Ask Score Question
+parameters:
+-   default_value: ''
+    description: 'The content to evaluate. Plain text, or a JSON object or array for
+        structured data. Placeholders such as [Event.additional_properties] are supported.'
+    is_mandatory: true
+    name: State
+    type: content
+-   default_value: ''
+    description: 'What Jev should rate, for example: "How risky is this sign-in?"'
+    is_mandatory: true
+    name: Question
+    type: string
+-   default_value: ''
+    description: 'Ordered level descriptions, lowest first (2 to 10 levels). Either a
+        comma-separated list, for example "No risk, Low risk, Medium risk, High risk",
+        or a JSON array.'
+    is_mandatory: true
+    name: Levels
+    type: content
+-   default_value: ''
+    description: Optional model or alias that overrides the integration "Default Model",
+        for example "jev-latest" or a pinned version such as "jev-1.13.0".
+    is_mandatory: false
+    name: Model
+    type: string
+script_result_name: score

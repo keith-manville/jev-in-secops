@@ -1,0 +1,39 @@
+creator: admin
+description: 'Ask Jev to pick one option from a set you define, for example to route
+    an alert to a team or to classify an email. Jev returns the chosen option, the
+    probability of every option and a confidence score. The action result is the chosen
+    option, so playbooks can branch on it.'
+dynamic_results_metadata:
+-   result_example_path: resources/ask_choice_question_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Jev
+name: Ask Choice Question
+parameters:
+-   default_value: ''
+    description: 'The content to evaluate. Plain text, or a JSON object or array for
+        structured data. Placeholders such as [Event.additional_properties] are supported.'
+    is_mandatory: true
+    name: State
+    type: content
+-   default_value: ''
+    description: 'What Jev should decide, for example: "Which team should handle this
+        alert?"'
+    is_mandatory: true
+    name: Question
+    type: string
+-   default_value: ''
+    description: 'The options to choose from (2 to 255). Either a comma-separated list,
+        for example "phishing, malware, spam, benign", or a JSON object that maps each
+        option to a description, for example {"phishing": "Credential theft attempt",
+        "benign": "Legitimate email"}.'
+    is_mandatory: true
+    name: Options
+    type: content
+-   default_value: ''
+    description: Optional model or alias that overrides the integration "Default Model",
+        for example "jev-latest" or a pinned version such as "jev-1.13.0".
+    is_mandatory: false
+    name: Model
+    type: string
+script_result_name: choice

@@ -1,0 +1,1015 @@
+Ask Choice Question:
+  ai_description: >-
+    ### General Description
+
+
+    Asks the Jev decision model to pick one option from a set of options for the provided
+    content. Returns the chosen option, the probability of each option and a confidence score.
+    The action result is the chosen option.
+
+
+
+    ### Flow Description
+
+
+    1. Extracts the state, question, options and model.
+
+
+    2. Parses the options from a comma-separated list, a JSON array or a JSON object of option
+    to description.
+
+
+    3. Sends a choice question to the TypeSafe `/v1/systemone` endpoint.
+
+
+    4. Returns the chosen option as the result value, with a JSON result and a data table.
+
+
+
+    ### Additional Notes
+
+
+    Between 2 and 255 options are supported.
+  ai_short_description: >-
+    Asks Jev to choose one option for content and returns the choice with its probabilities.
+  capabilities:
+    can_create_case_comments: false
+    can_create_insight: false
+    can_modify_alert_data: false
+    can_mutate_external_data: false
+    can_mutate_internal_data: false
+    can_update_entities: false
+    external_data_mutation_explanation: null
+    fetches_data: true
+    internal_data_mutation_explanation: null
+    reasoning: >-
+      The action sends a POST request to the TypeSafe `/v1/systemone` evaluation endpoint
+      to get model answers, which is a read-only inference call that returns data (`fetches_data`=true)
+      and does not change state in TypeSafe. It does not update entities, create insights,
+      modify alerts or add case comments.
+  entity_usage:
+    entity_types:
+      address: false
+      alert: false
+      application: false
+      child_hash: false
+      child_process: false
+      cluster: false
+      container: false
+      credit_card: false
+      cve: false
+      cve_id: false
+      database: false
+      deployment: false
+      destination_domain: false
+      domain: false
+      email_message: false
+      event: false
+      file_hash: false
+      file_name: false
+      generic: false
+      host_name: false
+      ip_set: false
+      mac_address: false
+      parent_hash: false
+      parent_process: false
+      phone_number: false
+      pod: false
+      process: false
+      service: false
+      source_domain: false
+      threat_actor: false
+      threat_campaign: false
+      threat_signature: false
+      url: false
+      usb: false
+      user: false
+    filters_by_additional_properties: false
+    filters_by_alert_identifier: false
+    filters_by_case_identifier: false
+    filters_by_creation_time: false
+    filters_by_entity_type: false
+    filters_by_identifier: false
+    filters_by_is_artifact: false
+    filters_by_is_enriched: false
+    filters_by_is_internal: false
+    filters_by_is_pivot: false
+    filters_by_is_suspicious: false
+    filters_by_is_vulnerable: false
+    filters_by_modification_time: false
+    reasoning: >-
+      The action does not iterate over `target_entities` or filter entities. It evaluates
+      the content provided in its parameters, so all entity types and filters are false.
+  outcome_categories:
+    add_alert_comment: false
+    add_ioc_to_allowlist: false
+    add_ioc_to_blocklist: false
+    contain_host: false
+    create_ticket: false
+    delete_email: false
+    disable_identity: false
+    download_file: false
+    enable_identity: false
+    enrich_asset: false
+    enrich_ioc: false
+    execute_command_on_the_host: false
+    get_alert_information: false
+    reasoning: >-
+      The action returns a model classification of arbitrary content, which does not match
+      an outcome category.
+    remove_ioc_from_allowlist: false
+    remove_ioc_from_blocklist: false
+    reset_identity_password: false
+    search_asset: false
+    search_email: false
+    search_events: false
+    send_email: false
+    send_message: false
+    submit_file: false
+    uncontain_host: false
+    update_alert: false
+    update_email: false
+    update_identity: false
+    update_ticket: false
+  parameters_description: >-
+    | Parameter | Type | Mandatory | Description |
+
+
+    | --- | --- | --- | --- |
+
+
+    | State | Content | Yes | The content to evaluate. Plain text, or a JSON object or array
+    for structured data. |
+
+
+    | Question | String | Yes | What Jev should decide. |
+
+
+    | Options | Content | Yes | Comma-separated options or a JSON object of option to description.
+    |
+
+
+    | Model | String | No | Optional Jev model or alias that overrides the integration default
+    model. |
+Ask Score Question:
+  ai_description: >-
+    ### General Description
+
+
+    Asks the Jev decision model to rate the provided content along an ordered rubric. Returns
+    a probability-weighted score between 0 and the highest level index. The action result
+    is the score.
+
+
+
+    ### Flow Description
+
+
+    1. Extracts the state, question, levels and model.
+
+
+    2. Parses the levels from a comma-separated list or a JSON array, lowest first.
+
+
+    3. Sends a score question to the TypeSafe `/v1/systemone` endpoint.
+
+
+    4. Returns the score as the result value, with the closest level, a JSON result and a
+    data table.
+
+
+
+    ### Additional Notes
+
+
+    Between 2 and 10 levels are supported.
+  ai_short_description: Asks Jev to score content along an ordered rubric and returns the
+    score.
+  capabilities:
+    can_create_case_comments: false
+    can_create_insight: false
+    can_modify_alert_data: false
+    can_mutate_external_data: false
+    can_mutate_internal_data: false
+    can_update_entities: false
+    external_data_mutation_explanation: null
+    fetches_data: true
+    internal_data_mutation_explanation: null
+    reasoning: >-
+      The action sends a POST request to the TypeSafe `/v1/systemone` evaluation endpoint
+      to get model answers, which is a read-only inference call that returns data (`fetches_data`=true)
+      and does not change state in TypeSafe. It does not update entities, create insights,
+      modify alerts or add case comments.
+  entity_usage:
+    entity_types:
+      address: false
+      alert: false
+      application: false
+      child_hash: false
+      child_process: false
+      cluster: false
+      container: false
+      credit_card: false
+      cve: false
+      cve_id: false
+      database: false
+      deployment: false
+      destination_domain: false
+      domain: false
+      email_message: false
+      event: false
+      file_hash: false
+      file_name: false
+      generic: false
+      host_name: false
+      ip_set: false
+      mac_address: false
+      parent_hash: false
+      parent_process: false
+      phone_number: false
+      pod: false
+      process: false
+      service: false
+      source_domain: false
+      threat_actor: false
+      threat_campaign: false
+      threat_signature: false
+      url: false
+      usb: false
+      user: false
+    filters_by_additional_properties: false
+    filters_by_alert_identifier: false
+    filters_by_case_identifier: false
+    filters_by_creation_time: false
+    filters_by_entity_type: false
+    filters_by_identifier: false
+    filters_by_is_artifact: false
+    filters_by_is_enriched: false
+    filters_by_is_internal: false
+    filters_by_is_pivot: false
+    filters_by_is_suspicious: false
+    filters_by_is_vulnerable: false
+    filters_by_modification_time: false
+    reasoning: >-
+      The action does not iterate over `target_entities` or filter entities. It evaluates
+      the content provided in its parameters, so all entity types and filters are false.
+  outcome_categories:
+    add_alert_comment: false
+    add_ioc_to_allowlist: false
+    add_ioc_to_blocklist: false
+    contain_host: false
+    create_ticket: false
+    delete_email: false
+    disable_identity: false
+    download_file: false
+    enable_identity: false
+    enrich_asset: false
+    enrich_ioc: false
+    execute_command_on_the_host: false
+    get_alert_information: false
+    reasoning: >-
+      The action returns a model rating of arbitrary content, which does not match an outcome
+      category.
+    remove_ioc_from_allowlist: false
+    remove_ioc_from_blocklist: false
+    reset_identity_password: false
+    search_asset: false
+    search_email: false
+    search_events: false
+    send_email: false
+    send_message: false
+    submit_file: false
+    uncontain_host: false
+    update_alert: false
+    update_email: false
+    update_identity: false
+    update_ticket: false
+  parameters_description: >-
+    | Parameter | Type | Mandatory | Description |
+
+
+    | --- | --- | --- | --- |
+
+
+    | State | Content | Yes | The content to evaluate. Plain text, or a JSON object or array
+    for structured data. |
+
+
+    | Question | String | Yes | What Jev should rate. |
+
+
+    | Levels | Content | Yes | Ordered level descriptions, lowest first, as a comma-separated
+    list or JSON array. |
+
+
+    | Model | String | No | Optional Jev model or alias that overrides the integration default
+    model. |
+Ask Yes No Question:
+  ai_description: >-
+    ### General Description
+
+
+    Asks the Jev decision model a yes/no question (a noul) about the provided content and
+    returns the calibrated probability that the answer is yes. The action result is true when
+    the probability is at or above the threshold.
+
+
+
+    ### Flow Description
+
+
+    1. Extracts the state, question, optional yes/no criteria, threshold and model.
+
+
+    2. Parses the state as JSON when it is a JSON object or array, otherwise sends it as text.
+
+
+    3. Sends a noul question to the TypeSafe `/v1/systemone` endpoint.
+
+
+    4. Compares the returned probability with the threshold and sets the result value, JSON
+    result and a data table.
+
+
+
+    ### Additional Notes
+
+
+    The threshold must be between 0 and 1.
+  ai_short_description: >-
+    Asks Jev a yes/no question about content and returns the probability that the answer is
+    yes.
+  capabilities:
+    can_create_case_comments: false
+    can_create_insight: false
+    can_modify_alert_data: false
+    can_mutate_external_data: false
+    can_mutate_internal_data: false
+    can_update_entities: false
+    external_data_mutation_explanation: null
+    fetches_data: true
+    internal_data_mutation_explanation: null
+    reasoning: >-
+      The action sends a POST request to the TypeSafe `/v1/systemone` evaluation endpoint
+      to get model answers, which is a read-only inference call that returns data (`fetches_data`=true)
+      and does not change state in TypeSafe. It does not update entities, create insights,
+      modify alerts or add case comments.
+  entity_usage:
+    entity_types:
+      address: false
+      alert: false
+      application: false
+      child_hash: false
+      child_process: false
+      cluster: false
+      container: false
+      credit_card: false
+      cve: false
+      cve_id: false
+      database: false
+      deployment: false
+      destination_domain: false
+      domain: false
+      email_message: false
+      event: false
+      file_hash: false
+      file_name: false
+      generic: false
+      host_name: false
+      ip_set: false
+      mac_address: false
+      parent_hash: false
+      parent_process: false
+      phone_number: false
+      pod: false
+      process: false
+      service: false
+      source_domain: false
+      threat_actor: false
+      threat_campaign: false
+      threat_signature: false
+      url: false
+      usb: false
+      user: false
+    filters_by_additional_properties: false
+    filters_by_alert_identifier: false
+    filters_by_case_identifier: false
+    filters_by_creation_time: false
+    filters_by_entity_type: false
+    filters_by_identifier: false
+    filters_by_is_artifact: false
+    filters_by_is_enriched: false
+    filters_by_is_internal: false
+    filters_by_is_pivot: false
+    filters_by_is_suspicious: false
+    filters_by_is_vulnerable: false
+    filters_by_modification_time: false
+    reasoning: >-
+      The action does not iterate over `target_entities` or filter entities. It evaluates
+      the content provided in its parameters, so all entity types and filters are false.
+  outcome_categories:
+    add_alert_comment: false
+    add_ioc_to_allowlist: false
+    add_ioc_to_blocklist: false
+    contain_host: false
+    create_ticket: false
+    delete_email: false
+    disable_identity: false
+    download_file: false
+    enable_identity: false
+    enrich_asset: false
+    enrich_ioc: false
+    execute_command_on_the_host: false
+    get_alert_information: false
+    reasoning: >-
+      The action returns a model decision about arbitrary content. It does not enrich a specific
+      IOC or asset or change any system, so it does not match an outcome category.
+    remove_ioc_from_allowlist: false
+    remove_ioc_from_blocklist: false
+    reset_identity_password: false
+    search_asset: false
+    search_email: false
+    search_events: false
+    send_email: false
+    send_message: false
+    submit_file: false
+    uncontain_host: false
+    update_alert: false
+    update_email: false
+    update_identity: false
+    update_ticket: false
+  parameters_description: >-
+    | Parameter | Type | Mandatory | Description |
+
+
+    | --- | --- | --- | --- |
+
+
+    | State | Content | Yes | The content to evaluate. Plain text, or a JSON object or array
+    for structured data. |
+
+
+    | Question | String | Yes | The yes/no question to ask. |
+
+
+    | Yes Criteria | String | No | What a yes answer means. |
+
+
+    | No Criteria | String | No | What a no answer means. |
+
+
+    | Threshold | String | No | Probability between 0 and 1 at or above which the answer is
+    yes. Default 0.5. |
+
+
+    | Model | String | No | Optional Jev model or alias that overrides the integration default
+    model. |
+Evaluate Questions:
+  ai_description: >-
+    ### General Description
+
+
+    Asks the Jev decision model several typed questions (noul, choice or score) about the
+    same content in a single request and returns every answer keyed by the question ids.
+
+
+
+    ### Flow Description
+
+
+    1. Extracts the state, the questions JSON and model.
+
+
+    2. Validates that each question has a supported type, instructions and, for choice and
+    score questions, criteria.
+
+
+    3. Sends the questions to the TypeSafe `/v1/systemone` endpoint.
+
+
+    4. Returns the raw answers as a JSON result and a data table.
+
+
+
+    ### Additional Notes
+
+
+    The question format follows the TypeSafe API reference at https://docs.typesafe.ai/api.
+  ai_short_description: Asks Jev several typed questions about content in one request.
+  capabilities:
+    can_create_case_comments: false
+    can_create_insight: false
+    can_modify_alert_data: false
+    can_mutate_external_data: false
+    can_mutate_internal_data: false
+    can_update_entities: false
+    external_data_mutation_explanation: null
+    fetches_data: true
+    internal_data_mutation_explanation: null
+    reasoning: >-
+      The action sends a POST request to the TypeSafe `/v1/systemone` evaluation endpoint
+      to get model answers, which is a read-only inference call that returns data (`fetches_data`=true)
+      and does not change state in TypeSafe. It does not update entities, create insights,
+      modify alerts or add case comments.
+  entity_usage:
+    entity_types:
+      address: false
+      alert: false
+      application: false
+      child_hash: false
+      child_process: false
+      cluster: false
+      container: false
+      credit_card: false
+      cve: false
+      cve_id: false
+      database: false
+      deployment: false
+      destination_domain: false
+      domain: false
+      email_message: false
+      event: false
+      file_hash: false
+      file_name: false
+      generic: false
+      host_name: false
+      ip_set: false
+      mac_address: false
+      parent_hash: false
+      parent_process: false
+      phone_number: false
+      pod: false
+      process: false
+      service: false
+      source_domain: false
+      threat_actor: false
+      threat_campaign: false
+      threat_signature: false
+      url: false
+      usb: false
+      user: false
+    filters_by_additional_properties: false
+    filters_by_alert_identifier: false
+    filters_by_case_identifier: false
+    filters_by_creation_time: false
+    filters_by_entity_type: false
+    filters_by_identifier: false
+    filters_by_is_artifact: false
+    filters_by_is_enriched: false
+    filters_by_is_internal: false
+    filters_by_is_pivot: false
+    filters_by_is_suspicious: false
+    filters_by_is_vulnerable: false
+    filters_by_modification_time: false
+    reasoning: >-
+      The action does not iterate over `target_entities` or filter entities. It evaluates
+      the content provided in its parameters, so all entity types and filters are false.
+  outcome_categories:
+    add_alert_comment: false
+    add_ioc_to_allowlist: false
+    add_ioc_to_blocklist: false
+    contain_host: false
+    create_ticket: false
+    delete_email: false
+    disable_identity: false
+    download_file: false
+    enable_identity: false
+    enrich_asset: false
+    enrich_ioc: false
+    execute_command_on_the_host: false
+    get_alert_information: false
+    reasoning: >-
+      The action returns model answers about arbitrary content, which does not match an outcome
+      category.
+    remove_ioc_from_allowlist: false
+    remove_ioc_from_blocklist: false
+    reset_identity_password: false
+    search_asset: false
+    search_email: false
+    search_events: false
+    send_email: false
+    send_message: false
+    submit_file: false
+    uncontain_host: false
+    update_alert: false
+    update_email: false
+    update_identity: false
+    update_ticket: false
+  parameters_description: >-
+    | Parameter | Type | Mandatory | Description |
+
+
+    | --- | --- | --- | --- |
+
+
+    | State | Content | Yes | The content to evaluate. Plain text, or a JSON object or array
+    for structured data. |
+
+
+    | Questions | Content | Yes | JSON object that maps question ids to Jev questions. |
+
+
+    | Model | String | No | Optional Jev model or alias that overrides the integration default
+    model. |
+List Models:
+  ai_description: >-
+    ### General Description
+
+
+    Lists the Jev model names and aliases that the configured TypeSafe API key can use.
+
+
+
+    ### Flow Description
+
+
+    1. Sends a GET request to `/v1/models`.
+
+
+    2. Returns the models as a JSON result and a data table.
+
+
+
+    ### Additional Notes
+
+
+    Versioned model IDs such as `jev-1.13.0` are accepted even when they are not listed.
+  ai_short_description: Lists the Jev models and aliases available to the TypeSafe API key.
+  capabilities:
+    can_create_case_comments: false
+    can_create_insight: false
+    can_modify_alert_data: false
+    can_mutate_external_data: false
+    can_mutate_internal_data: false
+    can_update_entities: false
+    external_data_mutation_explanation: null
+    fetches_data: true
+    internal_data_mutation_explanation: null
+    reasoning: >-
+      The action fetches the list of models from the TypeSafe API with a GET request and does
+      not mutate any data.
+  entity_usage:
+    entity_types:
+      address: false
+      alert: false
+      application: false
+      child_hash: false
+      child_process: false
+      cluster: false
+      container: false
+      credit_card: false
+      cve: false
+      cve_id: false
+      database: false
+      deployment: false
+      destination_domain: false
+      domain: false
+      email_message: false
+      event: false
+      file_hash: false
+      file_name: false
+      generic: false
+      host_name: false
+      ip_set: false
+      mac_address: false
+      parent_hash: false
+      parent_process: false
+      phone_number: false
+      pod: false
+      process: false
+      service: false
+      source_domain: false
+      threat_actor: false
+      threat_campaign: false
+      threat_signature: false
+      url: false
+      usb: false
+      user: false
+    filters_by_additional_properties: false
+    filters_by_alert_identifier: false
+    filters_by_case_identifier: false
+    filters_by_creation_time: false
+    filters_by_entity_type: false
+    filters_by_identifier: false
+    filters_by_is_artifact: false
+    filters_by_is_enriched: false
+    filters_by_is_internal: false
+    filters_by_is_pivot: false
+    filters_by_is_suspicious: false
+    filters_by_is_vulnerable: false
+    filters_by_modification_time: false
+    reasoning: >-
+      The action does not iterate over `target_entities` or filter entities. It evaluates
+      the content provided in its parameters, so all entity types and filters are false.
+  outcome_categories:
+    add_alert_comment: false
+    add_ioc_to_allowlist: false
+    add_ioc_to_blocklist: false
+    contain_host: false
+    create_ticket: false
+    delete_email: false
+    disable_identity: false
+    download_file: false
+    enable_identity: false
+    enrich_asset: false
+    enrich_ioc: false
+    execute_command_on_the_host: false
+    get_alert_information: false
+    reasoning: Listing available models does not match any outcome category.
+    remove_ioc_from_allowlist: false
+    remove_ioc_from_blocklist: false
+    reset_identity_password: false
+    search_asset: false
+    search_email: false
+    search_events: false
+    send_email: false
+    send_message: false
+    submit_file: false
+    uncontain_host: false
+    update_alert: false
+    update_email: false
+    update_identity: false
+    update_ticket: false
+  parameters_description: There are no parameters for this action
+Ping:
+  ai_description: >-
+    ### General Description
+
+
+    Tests connectivity to the TypeSafe API and validates the configured API key.
+
+
+
+    ### Flow Description
+
+
+    1. Initializes the API client with the integration configuration (API Root, API Key, Verify
+    SSL).
+
+
+    2. Sends a GET request to `/v1/models`.
+
+
+    3. Returns success if the request is authorized, otherwise fails with an error that explains
+    how to get a valid API key at console.typesafe.ai.
+
+
+
+    ### Additional Notes
+
+
+    Use this action to verify the integration configuration.
+  ai_short_description: Tests connectivity to the TypeSafe API and validates the API key.
+  capabilities:
+    can_create_case_comments: false
+    can_create_insight: false
+    can_modify_alert_data: false
+    can_mutate_external_data: false
+    can_mutate_internal_data: false
+    can_update_entities: false
+    external_data_mutation_explanation: null
+    fetches_data: false
+    internal_data_mutation_explanation: null
+    reasoning: >-
+      The action only tests connectivity. It does not fetch contextual data or mutate any
+      data.
+  entity_usage:
+    entity_types:
+      address: false
+      alert: false
+      application: false
+      child_hash: false
+      child_process: false
+      cluster: false
+      container: false
+      credit_card: false
+      cve: false
+      cve_id: false
+      database: false
+      deployment: false
+      destination_domain: false
+      domain: false
+      email_message: false
+      event: false
+      file_hash: false
+      file_name: false
+      generic: false
+      host_name: false
+      ip_set: false
+      mac_address: false
+      parent_hash: false
+      parent_process: false
+      phone_number: false
+      pod: false
+      process: false
+      service: false
+      source_domain: false
+      threat_actor: false
+      threat_campaign: false
+      threat_signature: false
+      url: false
+      usb: false
+      user: false
+    filters_by_additional_properties: false
+    filters_by_alert_identifier: false
+    filters_by_case_identifier: false
+    filters_by_creation_time: false
+    filters_by_entity_type: false
+    filters_by_identifier: false
+    filters_by_is_artifact: false
+    filters_by_is_enriched: false
+    filters_by_is_internal: false
+    filters_by_is_pivot: false
+    filters_by_is_suspicious: false
+    filters_by_is_vulnerable: false
+    filters_by_modification_time: false
+    reasoning: >-
+      The action does not iterate over `target_entities` or filter entities. It evaluates
+      the content provided in its parameters, so all entity types and filters are false.
+  outcome_categories:
+    add_alert_comment: false
+    add_ioc_to_allowlist: false
+    add_ioc_to_blocklist: false
+    contain_host: false
+    create_ticket: false
+    delete_email: false
+    disable_identity: false
+    download_file: false
+    enable_identity: false
+    enrich_asset: false
+    enrich_ioc: false
+    execute_command_on_the_host: false
+    get_alert_information: false
+    reasoning: A connectivity test does not match any outcome category.
+    remove_ioc_from_allowlist: false
+    remove_ioc_from_blocklist: false
+    reset_identity_password: false
+    search_asset: false
+    search_email: false
+    search_events: false
+    send_email: false
+    send_message: false
+    submit_file: false
+    uncontain_host: false
+    update_alert: false
+    update_email: false
+    update_identity: false
+    update_ticket: false
+  parameters_description: There are no parameters for this action
+Triage Alert:
+  ai_description: >-
+    ### General Description
+
+
+    Uses the Jev decision model to triage the current alert. Builds a structured state from
+    the alert and its security events and entities, then asks whether the alert is malicious,
+    how severe it is and what the analyst should do next. The action result is the recommended
+    action (close, investigate, escalate or contain).
+
+
+
+    ### Flow Description
+
+
+    1. Extracts the additional context, custom questions, max events and model parameters.
+
+
+    2. Loads the current alert and builds a JSON state with the alert name, rule, product,
+    severity, entities and up to `Max Events` security events, trimmed to fit the model context.
+
+
+    3. Sends the built-in triage questions, plus any custom questions, to the TypeSafe `/v1/systemone`
+    endpoint.
+
+
+    4. Returns the recommended action as the result value, with a triage summary in the JSON
+    result and a data table.
+
+
+
+    ### Additional Notes
+
+
+    Custom questions with the ids is_malicious, severity or recommended_action replace the
+    built-in questions.
+  ai_short_description: >-
+    Triages the current alert with Jev and returns maliciousness, severity and a recommended
+    action.
+  capabilities:
+    can_create_case_comments: false
+    can_create_insight: false
+    can_modify_alert_data: false
+    can_mutate_external_data: false
+    can_mutate_internal_data: false
+    can_update_entities: false
+    external_data_mutation_explanation: null
+    fetches_data: true
+    internal_data_mutation_explanation: null
+    reasoning: >-
+      The action reads the current alert from Google SecOps and sends it to the TypeSafe `/v1/systemone`
+      endpoint for a read-only evaluation (`fetches_data`=true). It does not mutate external
+      or internal data, update entities, create insights, modify alerts or add comments.
+  entity_usage:
+    entity_types:
+      address: false
+      alert: false
+      application: false
+      child_hash: false
+      child_process: false
+      cluster: false
+      container: false
+      credit_card: false
+      cve: false
+      cve_id: false
+      database: false
+      deployment: false
+      destination_domain: false
+      domain: false
+      email_message: false
+      event: false
+      file_hash: false
+      file_name: false
+      generic: false
+      host_name: false
+      ip_set: false
+      mac_address: false
+      parent_hash: false
+      parent_process: false
+      phone_number: false
+      pod: false
+      process: false
+      service: false
+      source_domain: false
+      threat_actor: false
+      threat_campaign: false
+      threat_signature: false
+      url: false
+      usb: false
+      user: false
+    filters_by_additional_properties: false
+    filters_by_alert_identifier: false
+    filters_by_case_identifier: false
+    filters_by_creation_time: false
+    filters_by_entity_type: false
+    filters_by_identifier: false
+    filters_by_is_artifact: false
+    filters_by_is_enriched: false
+    filters_by_is_internal: false
+    filters_by_is_pivot: false
+    filters_by_is_suspicious: false
+    filters_by_is_vulnerable: false
+    filters_by_modification_time: false
+    reasoning: >-
+      The action reads the entities attached to the current alert to describe them in the
+      state, but it does not iterate over or filter `target_entities`, so all entity flags
+      are false.
+  outcome_categories:
+    add_alert_comment: false
+    add_ioc_to_allowlist: false
+    add_ioc_to_blocklist: false
+    contain_host: false
+    create_ticket: false
+    delete_email: false
+    disable_identity: false
+    download_file: false
+    enable_identity: false
+    enrich_asset: false
+    enrich_ioc: false
+    execute_command_on_the_host: false
+    get_alert_information: true
+    reasoning: >-
+      The action returns alert information and a triage decision about the current alert.
+    remove_ioc_from_allowlist: false
+    remove_ioc_from_blocklist: false
+    reset_identity_password: false
+    search_asset: false
+    search_email: false
+    search_events: false
+    send_email: false
+    send_message: false
+    submit_file: false
+    uncontain_host: false
+    update_alert: false
+    update_email: false
+    update_identity: false
+    update_ticket: false
+  parameters_description: >-
+    | Parameter | Type | Mandatory | Description |
+
+
+    | --- | --- | --- | --- |
+
+
+    | Additional Context | Content | No | Extra context added to the state, such as enrichment
+    results. |
+
+
+    | Custom Questions | Content | No | JSON object of extra Jev questions. |
+
+
+    | Max Events | String | No | Maximum number of security events to include. Default 10.
+    |
+
+
+    | Model | String | No | Optional Jev model or alias that overrides the integration default
+    model. |

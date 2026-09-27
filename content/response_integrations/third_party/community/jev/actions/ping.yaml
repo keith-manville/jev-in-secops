@@ -1,0 +1,7 @@
+creator: admin
+description: Test connectivity to the TypeSafe API and validate the configured API key.
+dynamic_results_metadata: []
+integration_identifier: Jev
+name: Ping
+parameters: []
+script_result_name: is_success

@@ -1,0 +1,35 @@
+creator: admin
+description: 'Ask Jev several typed questions about the same content in a single request.
+    Each question is a yes/no ("noul"), "choice" or "score" question, as described
+    in the TypeSafe API reference (https://docs.typesafe.ai/api). Answers are returned
+    in the JSON result under the question ids you choose.'
+dynamic_results_metadata:
+-   result_example_path: resources/evaluate_questions_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Jev
+name: Evaluate Questions
+parameters:
+-   default_value: ''
+    description: 'The content to evaluate. Plain text, or a JSON object or array for
+        structured data. Placeholders such as [Event.additional_properties] are supported.'
+    is_mandatory: true
+    name: State
+    type: content
+-   default_value: '{"is_phishing": {"type": "noul", "instructions": "Is this a phishing
+        attempt?"}, "category": {"type": "choice", "instructions": "What kind of message
+        is this?", "criteria": {"phishing": null, "spam": null, "business": null}}}'
+    description: 'A JSON object that maps question ids you choose to Jev questions. Each
+        question needs "type" ("noul", "choice" or "score") and "instructions". Choice
+        questions need "criteria" as an object of option to description, and score
+        questions need "criteria" as an ordered array of levels.'
+    is_mandatory: true
+    name: Questions
+    type: content
+-   default_value: ''
+    description: Optional model or alias that overrides the integration "Default Model",
+        for example "jev-latest" or a pinned version such as "jev-1.13.0".
+    is_mandatory: false
+    name: Model
+    type: string
+script_result_name: is_success

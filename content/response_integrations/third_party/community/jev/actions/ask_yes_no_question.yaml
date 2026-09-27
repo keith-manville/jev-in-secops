@@ -1,0 +1,47 @@
+creator: admin
+description: 'Ask Jev a yes/no question (a "noul") about any content, such as an alert,
+    an email or enrichment results. Jev returns the calibrated probability that the
+    answer is yes. The action result is "true" when the probability is at or above
+    "Threshold", so playbooks can branch on it.'
+dynamic_results_metadata:
+-   result_example_path: resources/ask_yes_no_question_JsonResult_example.json
+    result_name: JsonResult
+    show_result: true
+integration_identifier: Jev
+name: Ask Yes No Question
+parameters:
+-   default_value: ''
+    description: 'The content to evaluate. Plain text, or a JSON object or array for
+        structured data. Placeholders such as [Event.additional_properties] are supported.'
+    is_mandatory: true
+    name: State
+    type: content
+-   default_value: ''
+    description: 'The yes/no question to ask, for example: "Is this email a phishing
+        attempt?"'
+    is_mandatory: true
+    name: Question
+    type: string
+-   default_value: ''
+    description: Optional description of what a "yes" answer means.
+    is_mandatory: false
+    name: Yes Criteria
+    type: string
+-   default_value: ''
+    description: Optional description of what a "no" answer means.
+    is_mandatory: false
+    name: No Criteria
+    type: string
+-   default_value: '0.5'
+    description: Probability between 0 and 1 at or above which the answer is treated
+        as "yes". Default is 0.5.
+    is_mandatory: false
+    name: Threshold
+    type: string
+-   default_value: ''
+    description: Optional model or alias that overrides the integration "Default Model",
+        for example "jev-latest" or a pinned version such as "jev-1.13.0".
+    is_mandatory: false
+    name: Model
+    type: string
+script_result_name: is_yes

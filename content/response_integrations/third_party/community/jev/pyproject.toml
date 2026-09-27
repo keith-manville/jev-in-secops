@@ -1,0 +1,31 @@
+[project]
+name = "Jev"
+version = "1.0"
+description = "Jev by TypeSafe AI: calibrated yes/no, choice and score decisions for Google SecOps SOAR playbooks."
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "environmentcommon",
+    "requests>=2.32.4",
+    "tipcommon",
+]
+
+[dependency-groups]
+dev = [
+    "integration-testing",
+    "pytest>=8.3.5",
+    "pytest-json-report>=1.5.0",
+    "soar-sdk",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "."
+
+[tool.uv.sources]
+environmentcommon = { path = "../../../../../packages/envcommon/whls/EnvironmentCommon-1.0.3-py3-none-any.whl" }
+integration-testing = { path = "../../../../../packages/integration_testing_whls/integration_testing-2.4.7-py3-none-any.whl" }
+soar-sdk = { git = "https://github.com/chronicle/soar-sdk.git" }
+tipcommon = { path = "../../../../../packages/tipcommon/whls/TIPCommon-2.4.7-py3-none-any.whl" }
+
+[[tool.uv.index]]
+url = "https://pypi.org/simple"
+default = true

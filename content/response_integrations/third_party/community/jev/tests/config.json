@@ -1,0 +1,6 @@
+{
+    "API Root": "https://api.typesafe.ai",
+    "API Key": "test-api-key",
+    "Default Model": "jev-latest",
+    "Verify SSL": true
+}

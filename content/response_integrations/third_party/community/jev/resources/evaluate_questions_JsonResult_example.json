@@ -1,0 +1,23 @@
+{
+    "model": "jev-1.13.0",
+    "answers": {
+        "is_phishing": {
+            "type": "noul",
+            "noul": 0.91
+        },
+        "category": {
+            "type": "choice",
+            "choice": "phishing",
+            "probabilities": {
+                "phishing": 0.86,
+                "spam": 0.11,
+                "business": 0.03
+            },
+            "confidence": 0.79
+        }
+    },
+    "usage": {
+        "input_tokens": 412,
+        "output_tokens": 44
+    }
+}

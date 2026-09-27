@@ -1,0 +1,32 @@
+{
+    "model": "jev-1.13.0",
+    "answers": {
+        "answer": {
+            "type": "score",
+            "score": 2.1,
+            "legend": {
+                "0": "No risk",
+                "1": "Low risk",
+                "2": "Medium risk",
+                "3": "High risk"
+            },
+            "probabilities": {
+                "0": 0.0,
+                "1": 0.1,
+                "2": 0.7,
+                "3": 0.2
+            },
+            "confidence": 0.74
+        }
+    },
+    "usage": {
+        "input_tokens": 304,
+        "output_tokens": 18
+    },
+    "decision": {
+        "score": 2.1,
+        "closest_level": 2,
+        "closest_level_description": "Medium risk",
+        "confidence": 0.74
+    }
+}

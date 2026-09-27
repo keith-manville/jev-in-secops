@@ -1,0 +1,61 @@
+{
+    "identifier": "SUSPICIOUS POWERSHELL EXECUTION_4C1A2E0B",
+    "alert_group_identifier": "group-1",
+    "creation_time": 1790000000000,
+    "modification_time": 1790000000000,
+    "case_identifier": "1",
+    "reporting_vendor": "Microsoft",
+    "reporting_product": "Microsoft Defender for Endpoint",
+    "environment": "Default Environment",
+    "name": "SUSPICIOUS POWERSHELL EXECUTION",
+    "description": "Encoded PowerShell command spawned by winword.exe",
+    "external_id": "da637912345",
+    "severity": 80,
+    "rule_generator": "Suspicious PowerShell",
+    "tags": [],
+    "detected_time": 1790000000000,
+    "security_events": [
+        {
+            "identifier": "event-1",
+            "name": "Process Created",
+            "device_product": "Microsoft Defender for Endpoint",
+            "event_type": "ProcessCreated",
+            "rule_generator": "Suspicious PowerShell",
+            "additional_properties": {
+                "ParentProcess": "winword.exe",
+                "CommandLine": "powershell.exe -enc SQBFAFgA",
+                "User": "jdoe"
+            }
+        },
+        {
+            "identifier": "event-2",
+            "name": "Network Connection",
+            "device_product": "Microsoft Defender for Endpoint",
+            "event_type": "NetworkConnection",
+            "additional_properties": {
+                "RemoteIP": "203.0.113.7",
+                "RemotePort": "443"
+            }
+        }
+    ],
+    "domain_relations": [],
+    "domain_entities": [
+        {
+            "identifier": "WS-042",
+            "creation_time": 1790000000000,
+            "modification_time": 1790000000000,
+            "case_identifier": "1",
+            "alert_identifier": "SUSPICIOUS POWERSHELL EXECUTION_4C1A2E0B",
+            "entity_type": "HOSTNAME",
+            "is_internal": true,
+            "is_suspicious": false,
+            "is_artifact": false,
+            "is_enriched": false,
+            "is_vulnerable": false,
+            "is_pivot": false,
+            "additional_properties": {}
+        }
+    ],
+    "additional_properties": {},
+    "additional_data": null
+}

@@ -1,0 +1,45 @@
+{
+    "model": "jev-1.13.0",
+    "answers": {
+        "is_malicious": {
+            "type": "noul",
+            "noul": 0.93
+        },
+        "severity": {
+            "type": "choice",
+            "choice": "high",
+            "probabilities": {
+                "critical": 0.12,
+                "high": 0.71,
+                "medium": 0.15,
+                "low": 0.02,
+                "informational": 0.0
+            },
+            "confidence": 0.66
+        },
+        "recommended_action": {
+            "type": "choice",
+            "choice": "escalate",
+            "probabilities": {
+                "close": 0.01,
+                "investigate": 0.2,
+                "escalate": 0.64,
+                "contain": 0.15
+            },
+            "confidence": 0.58
+        }
+    },
+    "usage": {
+        "input_tokens": 1874,
+        "output_tokens": 96
+    },
+    "triage": {
+        "alert_name": "SUSPICIOUS POWERSHELL EXECUTION",
+        "alert_identifier": "SUSPICIOUS POWERSHELL EXECUTION_4C1A2E0B",
+        "malicious_probability": 0.93,
+        "severity": "high",
+        "severity_confidence": 0.66,
+        "recommended_action": "escalate",
+        "recommended_action_confidence": 0.58
+    }
+}

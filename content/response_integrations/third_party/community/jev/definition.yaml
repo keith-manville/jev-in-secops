@@ -1,0 +1,42 @@
+identifier: Jev
+name: Jev
+description: 'Jev by TypeSafe AI is a decision model: it answers typed questions about
+    any text or JSON with calibrated probabilities instead of generated prose. Use it
+    in Google SecOps playbooks to triage alerts, classify emails and route cases with
+    yes/no, choice and score decisions that playbooks can branch on. To use this integration,
+    create an account at https://console.typesafe.ai/ and generate an API key.'
+parameters:
+-   name: API Root
+    default_value: https://api.typesafe.ai
+    type: string
+    description: The TypeSafe API root URL.
+    is_mandatory: true
+    integration_identifier: Jev
+-   name: API Key
+    default_value: ''
+    type: password
+    description: TypeSafe API key. Create an account at https://console.typesafe.ai/
+        and generate an API key there.
+    is_mandatory: true
+    integration_identifier: Jev
+-   name: Default Model
+    default_value: jev-latest
+    type: string
+    description: The Jev model or alias used when an action does not set "Model". Use
+        "jev-latest" for the latest stable release, or pin a version such as "jev-1.13.0"
+        to keep answers stable across releases.
+    is_mandatory: false
+    integration_identifier: Jev
+-   name: Verify SSL
+    default_value: true
+    type: boolean
+    description: If selected, the integration validates the SSL certificate when connecting
+        to the TypeSafe API. Selected by default.
+    is_mandatory: false
+    integration_identifier: Jev
+documentation_link: https://docs.typesafe.ai/
+categories:
+- Security
+- Operational
+svg_logo_path: resources/logo.svg
+image_path: resources/image.png
