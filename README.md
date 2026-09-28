@@ -98,8 +98,9 @@ git clone https://github.com/chronicle/content-hub.git
 cd content-hub
 cp -r <this repo>/content/response_integrations/third_party/community/jev \
       content/response_integrations/third_party/community/
-uv pip install -e ./packages/mp      # or: pip install -e ./packages/mp
+pip3 install -e ./packages/mp       # macOS: pip3, or: uv pip install -e ./packages/mp
 mp config --root-path .
+mkdir -p dist                       # mp pack does not create the output folder
 mp pack integration jev --non-interactive --dst ./dist
 ```
 
