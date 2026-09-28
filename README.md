@@ -88,6 +88,26 @@ See the [TypeSafe API reference](https://docs.typesafe.ai/api) for the full ques
   [TypeSafe data handling terms](https://docs.typesafe.ai/legal) before using it with
   sensitive data.
 
+## Installing as a custom integration (ZIP)
+
+Google SecOps imports custom integrations as a ZIP package. Build it with the
+Content Hub `mp` tool:
+
+```bash
+git clone https://github.com/chronicle/content-hub.git
+cd content-hub
+cp -r <this repo>/content/response_integrations/third_party/community/jev \
+      content/response_integrations/third_party/community/
+uv pip install -e ./packages/mp      # or: pip install -e ./packages/mp
+mp config --root-path .
+mp pack integration jev --non-interactive --dst ./dist
+```
+
+This creates `dist/Jev<date>.zip`. Then in Google SecOps:
+
+1. Go to **Response > IDE**, click the import icon and upload the ZIP.
+2. Configure the integration (API Key from https://console.typesafe.ai/) and run **Ping**.
+
 ## Development
 
 The integration uses the Content Hub tooling (`mp`), TIPCommon and the
