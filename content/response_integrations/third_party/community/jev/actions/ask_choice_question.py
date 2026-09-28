@@ -24,7 +24,6 @@ from ..core.constants import (
     DEFAULT_QUESTION_KEY,
     QuestionTypeEnum,
 )
-from ..core.exceptions import JevInvalidParameterError
 from ..core.utils import parse_choice_options, parse_state
 
 if TYPE_CHECKING:
@@ -41,20 +40,13 @@ class AskChoiceQuestion(JevAction):
         self.error_output_message: str = ERROR_MESSAGE
 
     def _extract_action_parameters(self) -> None:
-        self.params.state = extract_action_param(
-            self.soar_action, param_name="State", is_mandatory=True, remove_whitespaces=False
-        )
-        self.params.question = extract_action_param(
-            self.soar_action, param_name="Question", is_mandatory=True, print_value=True
-        )
-        self.params.options = extract_action_param(
-            self.soar_action, param_name="Options", is_mandatory=True, print_value=True
-        )
+        self.params.state = extract_action_param(self.soar_action, param_name="State", remove_whitespaces=False)
+        self.params.question = extract_action_param(self.soar_action, param_name="Question", print_value=True)
+        self.params.options = extract_action_param(self.soar_action, param_name="Options", print_value=True)
         self._extract_model_param()
 
     def _validate_params(self) -> None:
-        if not self.params.state.strip():
-            raise JevInvalidParameterError('"State" must not be empty.')
+        self._require_params(State=self.params.state, Question=self.params.question, Options=self.params.options)
         self.params.criteria = parse_choice_options(self.params.options)
 
     def _perform_action(self, _=None) -> None:

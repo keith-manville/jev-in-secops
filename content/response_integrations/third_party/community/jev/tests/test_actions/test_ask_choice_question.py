@@ -78,3 +78,15 @@ def test_ask_choice_question_needs_two_options(
 
     assert action_output.results.execution_state == ExecutionState.FAILED
     assert typesafe.last_payload is None
+
+
+@set_metadata(integration_config_file_path=CONFIG_PATH, parameters={**PARAMETERS, "State": ""})
+def test_ask_choice_question_empty_state_fails_cleanly(
+    action_output: MockActionOutput,
+    typesafe: TypeSafe,
+) -> None:
+    ask_choice_question.main()
+
+    assert action_output.results.execution_state == ExecutionState.FAILED
+    assert '"State" is empty' in action_output.results.output_message
+    assert typesafe.last_payload is None

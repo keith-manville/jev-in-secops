@@ -20,7 +20,6 @@ from TIPCommon.extraction import extract_action_param
 
 from ..core.base_action import JevAction
 from ..core.constants import EVALUATE_QUESTIONS_SCRIPT_NAME
-from ..core.exceptions import JevInvalidParameterError
 from ..core.utils import parse_questions, parse_state
 
 if TYPE_CHECKING:
@@ -37,17 +36,12 @@ class EvaluateQuestions(JevAction):
         self.error_output_message: str = ERROR_MESSAGE
 
     def _extract_action_parameters(self) -> None:
-        self.params.state = extract_action_param(
-            self.soar_action, param_name="State", is_mandatory=True, remove_whitespaces=False
-        )
-        self.params.questions = extract_action_param(
-            self.soar_action, param_name="Questions", is_mandatory=True, print_value=True
-        )
+        self.params.state = extract_action_param(self.soar_action, param_name="State", remove_whitespaces=False)
+        self.params.questions = extract_action_param(self.soar_action, param_name="Questions", print_value=True)
         self._extract_model_param()
 
     def _validate_params(self) -> None:
-        if not self.params.state.strip():
-            raise JevInvalidParameterError('"State" must not be empty.')
+        self._require_params(State=self.params.state, Questions=self.params.questions)
         self.params.parsed_questions = parse_questions(self.params.questions)
 
     def _perform_action(self, _=None) -> None:

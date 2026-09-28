@@ -24,7 +24,7 @@ from TIPCommon.transformation import construct_csv
 
 from .api_client import ApiParameters, JevApiClient
 from .auth import AuthenticatedSession, SessionAuthenticationParameters, build_auth_params
-from .exceptions import JevError
+from .exceptions import JevError, JevInvalidParameterError
 
 if TYPE_CHECKING:
     import requests
@@ -63,6 +63,22 @@ class JevAction(Action, ABC):
             param_name="Model",
             print_value=True,
         )
+
+    @staticmethod
+    def _require_params(**values: Any) -> None:
+        """Fail cleanly when a required parameter is empty.
+
+        Required parameters are extracted as optional and checked here instead,
+        because TIPCommon raises extraction errors before its error handling
+        starts, which surfaces in SecOps as an unhelpful script crash. A value
+        can also be empty at runtime when a placeholder resolves to nothing.
+        """
+        for name, value in values.items():
+            if value is None or not str(value).strip():
+                raise JevInvalidParameterError(
+                    f'"{name.replace("_", " ").title()}" is empty. Provide a value, and if you '
+                    "used a placeholder, check that it exists in this alert."
+                )
 
     @property
     def result_value(self) -> Any:

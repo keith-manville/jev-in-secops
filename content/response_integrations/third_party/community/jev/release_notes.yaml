@@ -4,3 +4,9 @@
   item_type: Integration
   publish_time: '2026-09-27'
   new: true
+- description: Actions now fail with a clear message when a required parameter, such
+    as "State", is empty instead of crashing.
+  version: 2.0
+  item_name: Jev
+  item_type: Integration
+  publish_time: '2026-09-28'

@@ -46,12 +46,8 @@ class AskYesNoQuestion(JevAction):
         self.error_output_message: str = ERROR_MESSAGE
 
     def _extract_action_parameters(self) -> None:
-        self.params.state = extract_action_param(
-            self.soar_action, param_name="State", is_mandatory=True, remove_whitespaces=False
-        )
-        self.params.question = extract_action_param(
-            self.soar_action, param_name="Question", is_mandatory=True, print_value=True
-        )
+        self.params.state = extract_action_param(self.soar_action, param_name="State", remove_whitespaces=False)
+        self.params.question = extract_action_param(self.soar_action, param_name="Question", print_value=True)
         self.params.yes_criteria = extract_action_param(self.soar_action, param_name="Yes Criteria", print_value=True)
         self.params.no_criteria = extract_action_param(self.soar_action, param_name="No Criteria", print_value=True)
         self.params.threshold = extract_action_param(
@@ -63,6 +59,7 @@ class AskYesNoQuestion(JevAction):
         self._extract_model_param()
 
     def _validate_params(self) -> None:
+        self._require_params(State=self.params.state, Question=self.params.question)
         validator = ParameterValidator(self.soar_action)
         self.params.threshold = validator.validate_float(
             param_name="Threshold",
@@ -71,8 +68,6 @@ class AskYesNoQuestion(JevAction):
         )
         if not 0 <= self.params.threshold <= 1:
             raise JevInvalidParameterError('"Threshold" must be a number between 0 and 1.')
-        if not self.params.state.strip():
-            raise JevInvalidParameterError('"State" must not be empty.')
 
     def _perform_action(self, _=None) -> None:
         question: SingleJson = {
